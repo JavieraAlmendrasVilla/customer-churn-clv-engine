@@ -1,3 +1,4 @@
+.venv/
 # Raw data (large files — download separately)
 data/raw/*
 !data/raw/.gitkeep
