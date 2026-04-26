@@ -14,11 +14,16 @@ Results are served through an interactive Streamlit dashboard where business use
 
 ---
 
-## Live Dashboard Preview
+## Dashboard
 
-| KPI Cards | Churn Distribution | CLV vs Churn Quadrant |
-|---|---|---|
-| 93,357 customers scored | Risk tier breakdown | Retention targeting view |
+### Overview — KPI Cards & Churn Risk
+![Dashboard Overview](assets/dashboard_overview.png)
+
+### CLV Analysis
+![CLV Analysis](assets/dashboard_clv.png)
+
+### Model Performance — ROC Curve & Feature Importance
+![Model Performance](assets/dashboard_model.png)
 
 > Run locally: `streamlit run app/streamlit_app.py`
 
