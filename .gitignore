@@ -1,0 +1,35 @@
+# Raw data (large files — download separately)
+data/raw/*
+!data/raw/.gitkeep
+
+# Generated outputs
+data/processed/*
+!data/processed/.gitkeep
+
+# Trained models
+models/*
+!models/.gitkeep
+
+# Experiment runs
+runs/*
+!runs/.gitkeep
+
+# Environment
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# dbt
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+
+# OS
+.DS_Store
+Thumbs.db

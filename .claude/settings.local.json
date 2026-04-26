@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(.venv/Scripts/python src/train.py)",
+      "Bash(.venv/Scripts/python src/predict.py)",
+      "Bash(.venv/Scripts/streamlit run:*)",
+      "Bash(.venv/Scripts/python src/evaluate.py)"
+    ]
+  }
+}

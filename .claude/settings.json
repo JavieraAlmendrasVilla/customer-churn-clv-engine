@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(.venv/Scripts/jupyter kernelspec:*)",
+      "Bash(jupyter kernelspec:*)",
+      "Bash(.venv/Scripts/python -c \":*)"
+    ]
+  }
+}

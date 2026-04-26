@@ -1,0 +1,60 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: Cleaned and typed orders — one row per order.
+    columns:
+      - name: order_id
+        description: Surrogate key for an order.
+        tests: [not_null, unique]
+      - name: customer_id
+        description: FK to stg_customers.
+        tests: [not_null]
+      - name: order_status
+        tests: [not_null]
+
+  - name: stg_customers
+    description: Customer dimension with deduplication key.
+    columns:
+      - name: customer_id
+        description: Transaction-level customer key (not unique across orders).
+        tests: [not_null, unique]
+      - name: customer_unique_id
+        description: True unique customer identifier.
+        tests: [not_null]
+
+  - name: stg_order_items
+    description: Line-item detail — one row per SKU per order.
+    columns:
+      - name: order_id
+        tests: [not_null]
+      - name: product_id
+        tests: [not_null]
+
+  - name: stg_order_payments
+    description: Payment detail — multiple rows per order are possible.
+    columns:
+      - name: order_id
+        tests: [not_null]
+      - name: payment_value
+        tests: [not_null]
+
+  - name: stg_order_reviews
+    description: Customer review scores and comment text.
+    columns:
+      - name: review_id
+        tests: [not_null, unique]
+      - name: review_score
+        tests: [not_null]
+
+  - name: stg_products
+    description: Product catalogue with translated category names.
+    columns:
+      - name: product_id
+        tests: [not_null, unique]
+
+  - name: stg_sellers
+    description: Seller dimension.
+    columns:
+      - name: seller_id
+        tests: [not_null, unique]

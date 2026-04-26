@@ -1,0 +1,54 @@
+version: 2
+
+models:
+  - name: mart_rfm_features
+    description: >
+      Full RFM + behavioural feature table — one row per customer.
+      Primary input to the churn and CLV ML models.
+    columns:
+      - name: customer_unique_id
+        description: True unique customer identifier.
+        tests: [not_null, unique]
+      - name: recency_days
+        description: Days since last purchase at snapshot date.
+        tests: [not_null]
+      - name: frequency
+        description: Number of distinct purchase dates.
+        tests: [not_null]
+      - name: monetary_value
+        description: Total revenue from all delivered orders.
+        tests: [not_null]
+      - name: customer_age_days
+        description: Days between first purchase and snapshot date.
+        tests: [not_null]
+
+  - name: mart_churn_labels
+    description: >
+      RFM features plus the binary churn label used for model training.
+      Churn = no purchase in the last 180 days.
+    columns:
+      - name: customer_unique_id
+        tests: [not_null, unique]
+      - name: churned
+        description: "1 = churned (inactive ≥ 180 days), 0 = active."
+        tests: [not_null]
+
+  - name: mart_clv_features
+    description: >
+      Feature table formatted for the lifetimes BG/NBD + Gamma-Gamma models.
+      Recency and T (customer age) are expressed in weeks.
+    columns:
+      - name: customer_unique_id
+        tests: [not_null, unique]
+      - name: frequency
+        description: Number of repeat purchases (purchase_count - 1 for BG/NBD).
+        tests: [not_null]
+      - name: recency_weeks
+        description: Weeks between first and last purchase.
+        tests: [not_null]
+      - name: T_weeks
+        description: Weeks between first purchase and snapshot date (customer age).
+        tests: [not_null]
+      - name: monetary_value
+        description: Average revenue per repeat purchase.
+        tests: [not_null]

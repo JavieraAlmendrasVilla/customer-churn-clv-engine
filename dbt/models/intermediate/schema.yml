@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: int_customer_orders
+    description: >
+      One row per customer_unique_id with aggregated order metrics.
+      Ephemeral model — not materialised as a table.
+    columns:
+      - name: customer_unique_id
+        description: True unique customer identifier.
+        tests: [not_null, unique]
+      - name: total_orders
+        description: Number of distinct orders placed.
+        tests: [not_null]
+      - name: total_revenue
+        description: Sum of all payment values across orders.
+        tests: [not_null]

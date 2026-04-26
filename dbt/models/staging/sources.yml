@@ -1,0 +1,49 @@
+version: 2
+
+sources:
+  - name: raw
+    description: >
+      Raw Olist e-commerce tables loaded into DuckDB by src/setup_db.py.
+      Run that script once before executing `dbt run`.
+    tables:
+      - name: raw_orders
+        description: All customer orders with status and timestamps.
+        columns:
+          - name: order_id
+            tests: [not_null, unique]
+
+      - name: raw_customers
+        description: Customer identifiers and zip-code locations.
+        columns:
+          - name: customer_id
+            tests: [not_null, unique]
+
+      - name: raw_order_items
+        description: Individual SKU line items within each order.
+        columns:
+          - name: order_id
+            tests: [not_null]
+
+      - name: raw_order_payments
+        description: Payment method and value per order (may have multiple rows per order).
+        columns:
+          - name: order_id
+            tests: [not_null]
+
+      - name: raw_order_reviews
+        description: Customer review scores and comment text.
+        columns:
+          - name: review_id
+            tests: [not_null]
+
+      - name: raw_products
+        description: Product catalogue with category and dimension data.
+        columns:
+          - name: product_id
+            tests: [not_null, unique]
+
+      - name: raw_sellers
+        description: Seller identifiers and zip-code locations.
+        columns:
+          - name: seller_id
+            tests: [not_null, unique]

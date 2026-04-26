@@ -1,0 +1,14 @@
+# Place this file at ~/.dbt/profiles.yml  OR  pass --profiles-dir dbt/
+# when running dbt commands, e.g.:
+#   dbt run --profiles-dir dbt/
+#
+# The DUCKDB_PATH env variable is read from .env via python-dotenv before
+# dbt runs — or set it manually in your shell.
+
+churn_clv:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('DUCKDB_PATH', '../data/processed/warehouse.duckdb') }}"
+      threads: 4
